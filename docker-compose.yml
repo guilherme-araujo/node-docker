@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  database:
+    image: mongo
+
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_URL=database
+    command: node index.js
+    depends_on:
+      - database
